@@ -1,0 +1,27 @@
+<%# 共通フォームの事をパーシャルという
+  newとeditでは更新後のURLが異なるが、routeで、resourcesを使っている場合、Railsが
+  適当なURLを自動で判断してくれるようになっている %>
+<%= form_for @post do |f| %>
+  <p>
+    <%= f.text_field :title, placeholder: 'enter title' %>
+    <% if @post.errors.messages[:title].any? %>
+      <%# spanは特に意味はない %>
+      <span class="error">
+        <%= @post.errors.messages[:title][0] %>
+      </span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.text_area :body, placeholder: 'enter body text' %>
+    <% if @post.errors.messages[:title].any? %>
+      <span class="error">
+        <%= @post.errors.messages[:body][0] %>
+      </span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  
+<% end %>
+
